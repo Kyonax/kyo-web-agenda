@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function AgendaItem({ item, checkState, toggleCheck, path = [] }) {
   const currentPath = [...path, item.title];
