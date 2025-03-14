@@ -62,7 +62,7 @@ function AgendaItem({ item, checkState, toggleCheck, path = [] }) {
         </div>
 
         {/* Metadata */}
-        {item.timestamp && <a href="#">{item.timestamp}</a>}
+        {item.timestamp && <p>{item.timestamp}</p>}
         {item.tags && item.tags.length > 0 && (
           <p>
             <strong>Tags:</strong> {item.tags.join(", ")}
