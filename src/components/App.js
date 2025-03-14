@@ -31,11 +31,14 @@ function App() {
 
   // Load check state from localStorage on mount
   useEffect(() => {
-    const savedCheckState = localStorage.getItem("checkState");
-    if (Object.keys(checkState).length !== 0) {
-      setCheckState(JSON.parse(savedCheckState));
-    } else {
-      async function loadChecks() {
+    const loadInitialCheckState = async () => {
+      const savedCheckState = localStorage.getItem("checkState");
+
+      if (savedCheckState) {
+        // If data exists in local storage, use it
+        setCheckState(JSON.parse(savedCheckState));
+      } else {
+        // If no data in local storage, fetch and initialize
         const content = await fetchOrgFile();
         const parsedContent = parseOrgFile(content);
         const items = parsedContent[selectedTab]?.items || [];
@@ -55,14 +58,14 @@ function App() {
           }
         });
 
-        // Save the array to local storage as a JSON string
+        // Save to local storage and update state
         localStorage.setItem("checkState", JSON.stringify(checkStateObject));
         setCheckState(checkStateObject);
       }
+    };
 
-      loadChecks();
-    }
-  });
+    loadInitialCheckState();
+  }, [selectedTab]); // Depend on selectedTab, not checkState
 
   // Save check state to localStorage when it changes
   useEffect(() => {
