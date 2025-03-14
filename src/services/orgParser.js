@@ -76,7 +76,7 @@ export function parseOrgFile(content) {
         }
 
         // Extract priority (e.g., [#A])
-        const priorityMatch = title.match(/\[\#([A-C])\]/);
+        const priorityMatch = title.match(/\[#([A-C])\]/);
         if (priorityMatch) {
           item.priority = priorityMatch[1];
           title = title.replace(priorityMatch[0], "").trim();
@@ -126,7 +126,7 @@ export function parseOrgFile(content) {
         }
 
         // Extract priority (e.g., [#A])
-        const priorityMatch = title.match(/\[\#([A-C])\]/);
+        const priorityMatch = title.match(/\[#([A-C])\]/);
         if (priorityMatch) {
           childItem.priority = priorityMatch[1];
           title = title.replace(priorityMatch[0], "").trim();

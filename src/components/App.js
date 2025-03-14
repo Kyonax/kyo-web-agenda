@@ -62,7 +62,7 @@ function App() {
 
       loadChecks();
     }
-  }, []);
+  });
 
   // Save check state to localStorage when it changes
   useEffect(() => {
