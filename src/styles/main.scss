@@ -1,0 +1,341 @@
+// Reset default styles
+@font-face {
+    font-family: "FiraCode";
+    src: url("https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf")
+        format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "FiraCode";
+    src: url("https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/FiraCode/Bold/FiraCodeNerdFont-Bold.ttf")
+        format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: hsl(0, 0%, 95%);
+}
+
+body {
+    font-family: "FiraCode", "Roboto Mono", Courier, monospace;
+    line-height: 1.6;
+    background-color: hsl(0, 0%, 0%);
+}
+
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+
+    .ascii {
+        min-width: 100%;
+    }
+
+    .ascii p {
+        margin-bottom: 3rem;
+        overflow: hidden;
+    }
+
+    pre {
+        overflow: hidden;
+        color: hsl(0, 0%, 65%);
+        font-family: "Courier New", Courier, monospace; /* Monospaced font for alignment */
+        font-size: 1rem; /* Adjust size as needed */
+        line-height: 1; /* Remove extra spacing between lines */
+        font-weight: bold;
+        padding-bottom: 0.5rem;
+        text-align: left;
+        width: max-content;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    p,
+    a {
+        font-size: 0.8rem;
+        text-decoration: none;
+        color: hsl(0, 0%, 65%);
+    }
+
+    a {
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px; // Add space between text and underline
+        }
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 2rem;
+        color: hsl(0, 0%, 95%);
+    }
+
+    .error {
+        color: hsl(352, 69%, 48%);
+        font-weight: bold;
+    }
+}
+
+.tab-navigation {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+
+    .tab {
+        padding: 10px 20px;
+        margin: 5px;
+        border: 1px solid hsla(0, 0%, 100%, 0.2);
+        cursor: pointer;
+        transition: background-color 0.3s;
+        background-color: transparent;
+
+        &:hover {
+            border: 1px solid hsla(0, 0%, 100%, 0.2);
+            background-color: hsla(0, 0%, 100%, 0.2);
+        }
+
+        &.active {
+            background-color: hsl(47, 95%, 56%);
+            color: hsl(0, 0%, 0%);
+            font-weight: bold;
+        }
+    }
+}
+
+.agenda-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 3rem;
+}
+
+.agenda-item {
+    padding: 15px;
+    border: 1px solid hsla(0, 0%, 100%, 0.2);
+
+    input[type="checkbox"] {
+        accent-color: hsl(47, 95%, 56%);
+        cursor: pointer;
+        margin-right: 15px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .item-details {
+        text-align: left;
+
+        .title-task {
+            display: grid;
+            grid-template-columns: max-content max-content max-content auto;
+            gap: 0.5rem;
+
+            .color-brand {
+                color: hsl(47, 95%, 56%);
+                align-content: center;
+                font-size: 1rem;
+            }
+
+            .title-priority {
+                margin-right: 0.5rem;
+                align-content: center;
+            }
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: hsl(0, 0%, 95%);
+            margin-bottom: 5px;
+        }
+
+        p,
+        a {
+            font-size: 0.9rem;
+            color: hsl(0, 0%, 65%);
+
+            strong {
+                color: hsl(0, 0%, 25%);
+            }
+        }
+
+        a {
+            position: relative;
+            top: -0.6rem;
+        }
+    }
+
+    .item-tasks,
+    .item-children {
+        margin-top: 10px;
+
+        h4 {
+            font-size: 1rem;
+            color: hsl(0, 0%, 95%);
+            margin-bottom: 5px;
+        }
+    }
+
+    .item-tasks ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .item-tasks ul li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    }
+
+    .item-tasks span {
+        font-size: 0.9rem;
+    }
+
+    .standalone-task {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        span {
+            font-size: 1rem;
+            color: hsl(0, 0%, 95%);
+        }
+    }
+
+    // Style for nested agenda items
+    .agenda-item {
+        margin-top: 10px;
+        padding: 18px;
+    }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+    .app {
+        padding: 10px;
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        pre {
+            font-size: 0.7rem; /* Adjust size as needed */
+        }
+    }
+
+    .tab-navigation {
+        flex-direction: column;
+        align-items: center;
+
+        .tab {
+            width: 80%;
+            margin: 5px 0;
+        }
+    }
+
+    .agenda-item {
+        padding: 10px;
+
+        .item-details h3 {
+            font-size: 1rem;
+        }
+
+        .item-details p,
+        .item-details a {
+            font-size: 0.9rem;
+        }
+
+        .item-details .color-brand {
+            font-size: 0.9rem;
+        }
+
+        .item-details .title-task {
+            grid-template-columns: max-content auto max-content max-content;
+
+            .title-priority {
+                margin-right: 0.5rem;
+                align-content: center;
+            }
+        }
+
+        .standalone-task span,
+        .item-tasks span {
+            font-size: 0.9rem;
+        }
+
+        .item-tasks h4,
+        .item-children h4 {
+            font-size: 0.9rem;
+        }
+
+        .standalone-task span {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .app {
+        padding: 10px;
+
+        .ascii p {
+            font-size: 0.7rem;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        pre {
+            font-size: 0.5rem; /* Adjust size as needed */
+        }
+    }
+    .agenda-item {
+        padding: 8px;
+
+        .item-details h3 {
+            font-size: 0.9rem;
+        }
+
+        .item-details p,
+        .item-details a {
+            font-size: 0.8rem;
+        }
+
+        .item-details .color-brand {
+            font-size: 0.7rem;
+        }
+
+        .item-tasks h4,
+        .item-children h4 {
+            font-size: 0.8rem;
+        }
+
+        .standalone-task span,
+        .item-tasks span {
+            font-size: 0.8rem;
+        }
+
+        p,
+        a {
+            font-size: 0.8rem;
+        }
+    }
+}
